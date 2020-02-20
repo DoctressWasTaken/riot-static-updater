@@ -6,12 +6,14 @@ from packaging import version
 import logging
 import tarfile
 
-resp = requests.get(settings.VERSION)
-data = resp.content
+import time
+logging.basicConfig(format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p', level=logging.INFO)
 
 
 def main():
     """Check if there is a need to update the data."""
+    resp = requests.get(settings.VERSION)
+    data = json.loads(resp.content)
     newest = data[0]
     if not settings.LATEST:
         logging.info("No version yet, updating!")
@@ -29,13 +31,17 @@ def update(version):
     """Update the datafiles."""
     
     # Download File
-    data = request.get(settings.TAIL % version)
+    url = settings.TAIL % version
+    data = requests.get(url)
+    logging.info(data.content)
     with open("latest.tgz", "wb+") as datafile:
         datafile.write(data.content)
     logging.info("Downloaded static files.")
 
-    tar = tarfile.open(fname, "r:gz")
+    tar = tarfile.open("latest.tgz", "r:gz")
     tar.extractall("./static_files")
     tar.close()
     logging.info("Extracted static files.")
 
+
+main()
