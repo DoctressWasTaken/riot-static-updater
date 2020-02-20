@@ -1,0 +1,5 @@
+{
+    "LATEST": null,
+    "VERSION": "https://ddragon.leagueoflegends.com/api/versions.json",
+    "TAIL": "https://ddragon.leagueoflegends.com/cdn/dragontail-%s.tgz"
+}
