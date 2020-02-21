@@ -41,4 +41,4 @@ TAIL = load("TAIL",
 
 LATEST = load("LATEST",
         None)
-
+JENKINS_HOOK = load("JENKINS_HOOK", None)

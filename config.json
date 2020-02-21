@@ -1,5 +1,6 @@
 {
     "LATEST": null,
     "VERSION": "https://ddragon.leagueoflegends.com/api/versions.json",
-    "TAIL": "https://ddragon.leagueoflegends.com/cdn/dragontail-%s.tgz"
+    "TAIL": "https://ddragon.leagueoflegends.com/cdn/dragontail-%s.tgz",
+    "JENKINS_HOOK": "https://jenkins.lightshield.dev/generic-webhook-trigger/invoke?token=riot-static"
 }

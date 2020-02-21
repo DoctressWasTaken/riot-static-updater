@@ -1,6 +1,8 @@
 
 
 *.swp
+*.tgz
+
 .py3/
 
-__*__
+__pycache__

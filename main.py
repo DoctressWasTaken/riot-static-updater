@@ -7,8 +7,11 @@ import logging
 import tarfile
 
 import time
-logging.basicConfig(format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p', level=logging.INFO)
-
+logging.basicConfig(
+        filename="log.log",
+        format='%(asctime)s %(message)s', 
+        datefmt='%m/%d/%Y %I:%M:%S %p', 
+        level=logging.INFO)
 
 def main():
     """Check if there is a need to update the data."""
@@ -43,5 +46,7 @@ def update(version):
     tar.close()
     logging.info("Extracted static files.")
 
+    if settings.JENKINS_HOOK:
+        requests.get(settings.JENKINS_HOOK)
 
 main()
