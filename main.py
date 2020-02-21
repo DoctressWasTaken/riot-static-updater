@@ -43,7 +43,9 @@ def update(version):
     logging.info("Downloaded static files.")
 
     # Deleting data folder
-    shutil.rmtree('./static_files')
+    shutil.rmtree('./static_files/img/')
+    shutil.rmtree('./static_files/data/')
+
     os.mkdir('./static_files')
     members = [version, "img"]
     tar = tarfile.open("latest.tgz", "r:gz")
