@@ -5,8 +5,9 @@ import settings
 from packaging import version
 import logging
 import tarfile
-
+import shutil, os
 import time
+
 logging.basicConfig(
         filename="log.log",
         format='%(asctime)s %(message)s', 
@@ -41,10 +42,15 @@ def update(version):
         datafile.write(data.content)
     logging.info("Downloaded static files.")
 
+    # Deleting data folder
+    shutil.rmtree('./static_files')
+    os.mkdir('./static_files')
+    members = [version, "img"]
     tar = tarfile.open("latest.tgz", "r:gz")
-    tar.extractall("./static_files")
+    tar.extractall(members, "./static_files/")
     tar.close()
     logging.info("Extracted static files.")
+    os.rename(version, "data")
 
     if settings.JENKINS_HOOK:
         requests.get(settings.JENKINS_HOOK)
