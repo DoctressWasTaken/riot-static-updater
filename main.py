@@ -37,7 +37,6 @@ def update(version):
     # Download File
     url = settings.TAIL % version
     data = requests.get(url)
-    logging.info(data.content)
     with open("latest.tgz", "wb+") as datafile:
         datafile.write(data.content)
     logging.info("Downloaded static files.")
