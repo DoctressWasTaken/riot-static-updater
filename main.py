@@ -46,7 +46,6 @@ def update(version):
     shutil.rmtree('./static_files/img/', ignore_errors=True)
     shutil.rmtree('./static_files/data/', ignore_errors=True)
 
-    os.mkdir('./static_files')
     members = [version, "img"]
     tar = tarfile.open("latest.tgz", "r:gz")
     tar.extractall(members, "./static_files/")
